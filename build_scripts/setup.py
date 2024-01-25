@@ -67,7 +67,7 @@ else:
         "apt install libssl-dev",
         "apt install libprotobuf-dev protobuf-compiler"
     ]
-    install_system_packages(commands)
+    install_system_packages(commands, no_confirm)
 
     print_msg("Building GameNetworkingSockets...")
     mkdir("build",cd=True)
