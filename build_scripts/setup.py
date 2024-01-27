@@ -1,10 +1,12 @@
 import os
 import subprocess
 import sys
+import stat
 from sys import platform
 from pathlib import Path
 
 # ninja
+os.chdir(deps_dir)
 ninja_root = deps_dir +"/ninja"
 if platform == "linux":
     ninja_executable_name = "ninja"
@@ -15,9 +17,11 @@ if not Path(ninja_root).is_dir():
     print_msg("Downloading ninja...")
     os.chdir(ninja_root)
     if platform == "linux":
-        http_extract("https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip")
-    else:
         http_extract("https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip")
+        st = os.stat('ninja')
+        os.chmod('ninja', st.st_mode | stat.S_IEXEC)
+    else:
+        http_extract("https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip")
 
 # Based on build instructions: https://github.com/ValveSoftware/GameNetworkingSockets/blob/master/BUILDING.md
 os.chdir(deps_dir)
@@ -75,5 +79,11 @@ else:
     subprocess.run(["ninja"],check=True)
 
 cmake_args.append("-DDEPENDENCY_VALVE_GAMENETWORKINGSOCKETS_INCLUDE=" +gns_root +"/include")
-cmake_args.append("-DDEPENDENCY_VALVE_GAMENETWORKINGSOCKETS_LIBRARY=" +gns_root +"/build/src/GameNetworkingSockets.lib")
+if platform == "win32":
+    cmake_args.append("-DDEPENDENCY_VALVE_GAMENETWORKINGSOCKETS_LIBRARY=" +gns_root +"/build/src/GameNetworkingSockets.lib")
+else:
+    cmake_args.append("-DDEPENDENCY_VALVE_GAMENETWORKINGSOCKETS_LIBRARY=" +gns_root +"/build/bin/libGameNetworkingSockets.so")
 cmake_args.append("-DDEPENDENCY_GAMENETWORKINGSOCKETS_BINARY_DIR=" +gns_root +"/build/bin")
+
+additional_build_targets.append("pr_game_networking_client")
+additional_build_targets.append("pr_game_networking_server")
