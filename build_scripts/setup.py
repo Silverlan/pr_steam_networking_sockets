@@ -68,7 +68,7 @@ if platform == "win32":
 else:
     print_msg("Installing required GameNetworkingSockets packages...")
     commands = []
-    if not no_libssl:
+    if platform == "linux" and not no_libssl:
         commands.append("apt install libssl-dev")
     commands.append("apt install libprotobuf-dev protobuf-compiler")
     install_system_packages(commands, no_confirm)
