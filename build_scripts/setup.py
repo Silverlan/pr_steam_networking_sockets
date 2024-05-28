@@ -67,10 +67,10 @@ if platform == "win32":
     os.system("\"" +os.path.normpath(vsdevcmd_path) + "\" -arch=x64&ninja")
 else:
     print_msg("Installing required GameNetworkingSockets packages...")
-    commands = [
-        "apt install libssl-dev",
-        "apt install libprotobuf-dev protobuf-compiler"
-    ]
+    commands = []
+    if not no_libssl:
+        commands.append("apt install libssl-dev")
+    commands.append("apt install libprotobuf-dev protobuf-compiler")
     install_system_packages(commands, no_confirm)
 
     print_msg("Building GameNetworkingSockets...")
