@@ -14,8 +14,6 @@ if(${CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS})
     add_subdirectory(steam_server)
 endif()
 
-set(CMAKE_CXX_STANDARD 17)
-
 set_target_properties(pr_game_networking_client PROPERTIES FOLDER modules/networking)
 set_target_properties(pr_game_networking_server PROPERTIES FOLDER modules/networking)
 if(${CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS})
