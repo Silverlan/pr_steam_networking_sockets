@@ -5,7 +5,7 @@ pr_add_library(${PROJ_NAME} SHARED)
 
 pr_add_dependency(${PROJ_NAME} server TARGET PUBLIC)
 pr_add_dependency(${PROJ_NAME} ishared TARGET PUBLIC)
-pr_add_dependency(${PROJ_NAME} networkmanager HEADER_ONLY)
+pr_add_dependency(${PROJ_NAME} networkmanager TARGET)
 
 if(CONFIG_USE_STEAMWORKS_NETWORKING MATCHES ON)
 	pr_add_compile_definitions(${PROJ_NAME} -DUSE_STEAMWORKS_NETWORKING)
