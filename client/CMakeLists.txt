@@ -13,8 +13,6 @@ if(CONFIG_USE_STEAMWORKS_NETWORKING MATCHES ON)
 	pr_add_external_dependency(${PROJ_NAME} steamworks LIBRARY)
 else()
 	pr_add_external_dependency(${PROJ_NAME} valve_gamenetworkingsockets LIBRARY)
-	pr_add_external_dependency(${PROJ_NAME} openssl LIBRARY)
-	pr_add_external_dependency(${PROJ_NAME} protobuf LIBRARY)
 endif()
 
 pr_add_headers(${PROJ_NAME} "include/")
