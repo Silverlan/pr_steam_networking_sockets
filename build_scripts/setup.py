@@ -31,7 +31,7 @@ if not Path(gns_root).is_dir():
     git_clone("https://github.com/ValveSoftware/GameNetworkingSockets.git")
 
 os.chdir(gns_root)
-reset_to_commit("505c697d0abef5da2ff3be35aa4ea3687597c3e9")
+reset_to_commit("725e273")
 
 script_path = os.path.abspath(__file__)
 print_msg("Applying patch...")
@@ -50,7 +50,7 @@ if platform == "win32":
         git_clone("https://github.com/Microsoft/vcpkg.git")
 
     os.chdir(gns_vcpkg_root)
-    reset_to_commit("3b7578831da081ba164be30da8d9382a64841059")
+    reset_to_commit("ee2d2a1")
     os.chdir("..")
     if platform == "linux":
         subprocess.run([gns_vcpkg_root +"/bootstrap-vcpkg.sh","-disableMetrics"],check=True,shell=True)
