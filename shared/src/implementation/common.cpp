@@ -1,5 +1,10 @@
-#include "pr_steam_networking/common.hpp"
-#include <iostream>
+module;
+
+#include "steam_includes.hpp"
+
+module pragma.networking.steam.shared;
+
+import :common;
 
 void BaseSteamNetworkingSocket::Initialize()
 {

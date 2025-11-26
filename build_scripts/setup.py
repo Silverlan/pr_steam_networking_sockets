@@ -31,7 +31,7 @@ if not Path(gns_root).is_dir():
     git_clone("https://github.com/ValveSoftware/GameNetworkingSockets.git")
 
 os.chdir(gns_root)
-reset_to_commit("725e273")
+reset_to_commit("517fff0cf6866ba163f4f016b0ef28f365c06c05")
 
 script_path = os.path.abspath(__file__)
 print_msg("Applying patch...")
@@ -71,7 +71,8 @@ else:
         "apt install libssl-dev",
         "apt install libprotobuf-dev protobuf-compiler"
     ]
-    install_system_packages(commands, no_confirm)
+    if(not no_sudo):
+        install_system_packages(commands, no_confirm)
 
     print_msg("Building GameNetworkingSockets...")
     mkdir("build",cd=True)

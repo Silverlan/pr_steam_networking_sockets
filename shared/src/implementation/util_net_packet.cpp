@@ -1,4 +1,10 @@
-#include "pr_steam_networking/util_net_packet.hpp"
+module;
+
+#include "steam_includes.hpp"
+
+module pragma.networking.steam.shared;
+
+import :util_net_packet;
 
 std::optional<NetPacket> NetPacketReceiver::ReceiveDataFragment(BaseSteamNetworkingSocket &sns, ISteamNetworkingMessage &msg)
 {

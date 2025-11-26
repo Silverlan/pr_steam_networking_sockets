@@ -1,9 +1,12 @@
-#include "pr_steam_networking/util_module.hpp"
-#include "pr_steam_networking/common.hpp"
-#include <udm_enums.hpp>
-#include <pragma/engine.h>
+module;
 
-extern DLLNETWORK Engine *engine;
+#include "steam_includes.hpp"
+#include <cassert>
+
+module pragma.networking.steam.shared;
+
+import :util_module;
+
 static constexpr const char *cvarNameInstances = "steam_networking_sockets_instances";
 static int32_t get_net_lib_instance_count()
 {
@@ -11,10 +14,10 @@ static int32_t get_net_lib_instance_count()
 	// This is required because 'GameNetworkingSockets_Init' must only be called once per application,
 	// however if a server is created and connected to locally, two library instances exist (server and client),
 	// in which case we must ensure it's not called an additional time.
-	auto cvInstanceCount = engine->RegisterConVar(cvarNameInstances, udm::Type::Boolean, "0", ConVarFlags::Hidden, "");
+	auto cvInstanceCount = pragma::Engine::Get()->RegisterConVar(cvarNameInstances, udm::Type::Boolean, "0", pragma::console::ConVarFlags::Hidden, "");
 	if(cvInstanceCount == nullptr)
 		return -1;
-	return engine->GetConVarInt(cvarNameInstances);
+	return pragma::Engine::Get()->GetConVarInt(cvarNameInstances);
 }
 
 bool initialize_steam_game_networking_sockets(std::string &err)
@@ -40,11 +43,11 @@ bool initialize_steam_game_networking_sockets(std::string &err)
 		}
 		if(success == false) {
 			err = "Unable to initialize game networking sockets: " + errMsg;
-			engine->SetConVar(cvarNameInstances, std::to_string(-1));
+			pragma::Engine::Get()->SetConVar(cvarNameInstances, std::to_string(-1));
 			return false;
 		}
 	}
-	engine->SetConVar(cvarNameInstances, std::to_string(numInstances + 1));
+	pragma::Engine::Get()->SetConVar(cvarNameInstances, std::to_string(numInstances + 1));
 	return true;
 }
 void kill_steam_game_networking_sockets()
@@ -61,5 +64,5 @@ void kill_steam_game_networking_sockets()
 		GameNetworkingSockets_Kill();
 #endif
 	}
-	engine->SetConVar(cvarNameInstances, std::to_string(numInstances - 1));
+	pragma::Engine::Get()->SetConVar(cvarNameInstances, std::to_string(numInstances - 1));
 }

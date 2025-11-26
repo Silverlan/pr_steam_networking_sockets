@@ -4,6 +4,7 @@ option(CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS "If enabled, steam networking sock
 
 set(PROJ_NAME_PREFIX pr_game_networking)
 set(CONFIG_USE_STEAMWORKS_NETWORKING OFF)
+add_subdirectory(shared)
 add_subdirectory(client)
 add_subdirectory(server)
 

@@ -4,7 +4,7 @@ set(PROJ_NAME ${PROJ_NAME_PREFIX}_client)
 pr_add_library(${PROJ_NAME} SHARED)
 
 pr_add_dependency(${PROJ_NAME} client TARGET PUBLIC)
-pr_add_dependency(${PROJ_NAME} ishared TARGET PUBLIC)
+pr_add_dependency(${PROJ_NAME} ${PROJ_NAME_PREFIX}_shared TARGET PUBLIC)
 pr_add_dependency(${PROJ_NAME} networkmanager TARGET)
 
 if(CONFIG_USE_STEAMWORKS_NETWORKING MATCHES ON)

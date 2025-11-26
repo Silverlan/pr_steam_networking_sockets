@@ -1,16 +1,7 @@
-#include "pr_module.hpp"
-#include <pr_steam_networking/common.hpp>
-#include <pr_steam_networking/util_net_packet.hpp>
-#include <sharedutils/util_weak_handle.hpp>
-#include <pragma/networking/iserver.hpp>
-#include <pragma/networking/iserver_client.hpp>
-#include <pragma/networking/error.hpp>
-#include <pragma/networking/ip_address.hpp>
-#include <pragma/console/convars.h>
-#include <mathutil/umath.h>
-#include <iostream>
-#include <array>
-#include <string>
+#include "steam_includes.hpp"
+
+import pragma.networking.steam.shared;
+import pragma.server;
 
 namespace pragma::networking {
 	class SteamServer;
@@ -300,9 +291,8 @@ void pragma::networking::SteamServer::OnSteamNetConnectionStatusChanged(SteamNet
 
 ISteamNetworkingSockets &pragma::networking::SteamServerClient::GetInterface() const { return m_server.GetInterface(); }
 
-class NetworkState;
 extern "C" {
-PRAGMA_EXPORT bool pragma_attach(std::string &err) { return initialize_steam_game_networking_sockets(err); }
-PRAGMA_EXPORT void pragma_detach() { kill_steam_game_networking_sockets(); }
-PRAGMA_EXPORT void initialize_game_server(NetworkState &nw, std::unique_ptr<pragma::networking::IServer> &outServer, pragma::networking::Error &outErr) { outServer = std::make_unique<pragma::networking::SteamServer>(); }
+PR_EXPORT bool pragma_attach(std::string &err) { return initialize_steam_game_networking_sockets(err); }
+PR_EXPORT void pragma_detach() { kill_steam_game_networking_sockets(); }
+PR_EXPORT void initialize_game_server(NetworkState &nw, std::unique_ptr<pragma::networking::IServer> &outServer, pragma::networking::Error &outErr) { outServer = std::make_unique<pragma::networking::SteamServer>(); }
 };
