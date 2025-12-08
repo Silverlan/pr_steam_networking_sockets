@@ -186,7 +186,7 @@ void pragma::networking::SteamClient::OnSteamNetConnectionStatusChanged(SteamNet
 extern "C" {
 PR_EXPORT bool pragma_attach(std::string &err) { return initialize_steam_game_networking_sockets(err); }
 PR_EXPORT void pragma_detach() { kill_steam_game_networking_sockets(); }
-PR_EXPORT void initialize_game_client(NetworkState &nw, std::unique_ptr<pragma::networking::IClient> &outClient)
+PR_EXPORT void initialize_game_client(pragma::NetworkState &nw, std::unique_ptr<pragma::networking::IClient> &outClient)
 {
 	auto cl = std::make_unique<pragma::networking::SteamClient>();
 	pragma::networking::Error err;

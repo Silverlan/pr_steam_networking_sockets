@@ -294,5 +294,5 @@ ISteamNetworkingSockets &pragma::networking::SteamServerClient::GetInterface() c
 extern "C" {
 PR_EXPORT bool pragma_attach(std::string &err) { return initialize_steam_game_networking_sockets(err); }
 PR_EXPORT void pragma_detach() { kill_steam_game_networking_sockets(); }
-PR_EXPORT void initialize_game_server(NetworkState &nw, std::unique_ptr<pragma::networking::IServer> &outServer, pragma::networking::Error &outErr) { outServer = std::make_unique<pragma::networking::SteamServer>(); }
+PR_EXPORT void initialize_game_server(pragma::NetworkState &nw, std::unique_ptr<pragma::networking::IServer> &outServer, pragma::networking::Error &outErr) { outServer = std::make_unique<pragma::networking::SteamServer>(); }
 };
