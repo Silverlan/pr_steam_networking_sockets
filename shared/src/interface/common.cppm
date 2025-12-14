@@ -33,13 +33,13 @@ export {
 	public:
 		void Initialize();
 		ISteamNetworkingSockets &GetSteamInterface() const;
-		util::Clock::duration GetDurationSinceStart(SteamNetworkingMicroseconds t) const;
-		util::Clock::time_point GetStartTime() const;
+		pragma::util::Clock::duration GetDurationSinceStart(SteamNetworkingMicroseconds t) const;
+		pragma::util::Clock::time_point GetStartTime() const;
 		SteamNetworkingMicroseconds GetSteamStartTime() const;
 		static void DebugOutput(ESteamNetworkingSocketsDebugOutputType eType, const char *msg);
 	private:
 		ISteamNetworkingSockets *m_pInterface = nullptr;
 		SteamNetworkingMicroseconds m_steamStartTime = 0;
-		util::Clock::time_point m_chronoStartTime;
+		pragma::util::Clock::time_point m_chronoStartTime;
 	};
 }

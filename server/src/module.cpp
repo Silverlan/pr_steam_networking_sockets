@@ -28,7 +28,7 @@ bool pragma::networking::SteamServerClient::Drop(pragma::networking::DropReason 
 {
 	if(m_hConnection == k_HSteamNetConnection_Invalid)
 		return true;
-	if(GetInterface().CloseConnection(m_hConnection, k_ESteamNetConnectionEnd_App_Min + umath::to_integral(reason), pragma::networking::drop_reason_to_string(reason).c_str(), true) == false) {
+	if(GetInterface().CloseConnection(m_hConnection, k_ESteamNetConnectionEnd_App_Min + pragma::math::to_integral(reason), pragma::networking::drop_reason_to_string(reason).c_str(), true) == false) {
 		outErr = {pragma::networking::ErrorCode::UnableToDropClient, "Unable to drop client!"};
 		return false;
 	}

@@ -24,7 +24,7 @@ std::optional<NetPacket> NetPacketReceiver::ReceiveDataFragment(BaseSteamNetwork
 	m_packetBody = NetPacket {m_packetHeader.messageId, size};
 	memcpy(m_packetBody->GetData(), data, size);
 
-	m_packetBody.SetTimeActivated(util::clock::to_int(util::clock::get_duration_since_start()));
+	m_packetBody.SetTimeActivated(pragma::util::clock::to_int(pragma::util::clock::get_duration_since_start()));
 	return m_packetBody;
 }
 
