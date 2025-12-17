@@ -1,5 +1,6 @@
 import os, sys
 from pathlib import Path
+import stat
 
 sys.path.insert(0, str(Path(os.path.abspath(os.path.dirname(__file__))).parent.parent.parent.parent / "build_scripts"))
 from scripts.shared import *

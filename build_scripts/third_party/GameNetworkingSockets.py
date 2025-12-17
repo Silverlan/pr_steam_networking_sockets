@@ -11,6 +11,8 @@ def main():
 	build_config_tp = config.build_config_tp
 	deps_dir = config.deps_dir
 	generator = config.generator
+	no_confirm = config.no_confirm
+	no_sudo = config.no_sudo
 	chdir_mkdir(deps_dir)
 
 	# Custom env with ninja
@@ -55,11 +57,11 @@ def main():
 			os.chdir(deps_dir)
 		else:
 			print_msg("Installing required GameNetworkingSockets packages...")
-			commands = [
-				"apt install libssl-dev",
-				"apt install libprotobuf-dev protobuf-compiler"
-			]
 			if(not no_sudo):
+				commands = [
+					"apt install libssl-dev",
+					"apt install libprotobuf-dev protobuf-compiler"
+				]
 				install_system_packages(commands, no_confirm)
 
 			print_msg("Building GameNetworkingSockets...")
