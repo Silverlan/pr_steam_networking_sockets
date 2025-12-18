@@ -11,8 +11,6 @@ def main():
 	build_config_tp = config.build_config_tp
 	deps_dir = config.deps_dir
 	generator = config.generator
-	no_confirm = config.no_confirm
-	no_sudo = config.no_sudo
 	chdir_mkdir(deps_dir)
 
 	# Custom env with ninja
@@ -56,6 +54,8 @@ def main():
 			cmake_build("Release", env=env)
 			os.chdir(deps_dir)
 		else:
+			no_confirm = config.no_confirm
+			no_sudo = config.no_sudo
 			print_msg("Installing required GameNetworkingSockets packages...")
 			if(not no_sudo):
 				commands = [
