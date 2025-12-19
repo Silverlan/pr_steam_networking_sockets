@@ -20,12 +20,12 @@ def main():
 	
 	# Download
 	os.chdir(deps_dir)
-	commit_sha = "6c3b34162ba22c74e356f8535402b17dc900a4d3" # v1.4.1 (with changes)
+	commit_sha = "505c697d0abef5da2ff3be35aa4ea3687597c3e9" # v1.4.1
 	gns_root = os.getcwd() +"/GameNetworkingSockets"
 	if not check_repository_commit(gns_root, commit_sha, "GameNetworkingSockets"): 
 		if not Path(gns_root).is_dir():
 			print_msg("GameNetworkingSockets not found. Downloading...")
-			git_clone("https://github.com/Silverlan/GameNetworkingSockets.git")
+			git_clone("https://github.com/ValveSoftware/GameNetworkingSockets.git")
 			os.chdir("GameNetworkingSockets")
 			reset_to_commit(commit_sha)
 
