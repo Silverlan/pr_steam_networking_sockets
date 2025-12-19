@@ -10,7 +10,7 @@ if(WIN32)
     )
 else()
     pr_install_files(
-        "${DEPENDENCY_GAMENETWORKINGSOCKETS_BINARY_DIR}/libGameNetworkingSockets.so"
+        "${DEPENDENCY_VALVE_GAMENETWORKINGSOCKETS_LIBRARY}"
         INSTALL_DIR "${INSTALL_PATH}"
     )
 endif()
