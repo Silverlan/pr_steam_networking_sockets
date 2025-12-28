@@ -50,7 +50,7 @@ def main():
 			# Build
 			print_msg("Building GameNetworkingSockets...")
 			mkdir("build",cd=True)
-			cmake_configure_def_toolset("..","Ninja",["-DBUILD_EXAMPLES=OFF", "-DBUILD_TESTS=OFF", "-DUSE_STEAMWEBRTC=ON"], env=env)
+			cmake_configure_def_toolset("..","Ninja",["-DBUILD_EXAMPLES=OFF", "-DBUILD_TESTS=OFF", "-DUSE_STEAMWEBRTC=ON", "-DCMAKE_BUILD_TYPE=" +build_config_tp], env=env)
 			cmake_build("Release", env=env)
 			os.chdir(deps_dir)
 		else:
@@ -66,7 +66,7 @@ def main():
 
 			print_msg("Building GameNetworkingSockets...")
 			mkdir("build",cd=True)
-			subprocess.run(["cmake","-G","Ninja","-DBUILD_EXAMPLES=OFF", "-DBUILD_TESTS=OFF", "-DUSE_STEAMWEBRTC=ON",".."], check=True, env=env)
+			subprocess.run(["cmake","-G","Ninja","-DBUILD_EXAMPLES=OFF", "-DBUILD_TESTS=OFF", "-DUSE_STEAMWEBRTC=ON", "-DCMAKE_BUILD_TYPE=" +build_config_tp,".."], check=True, env=env)
 			subprocess.run(["ninja"], check=True, env=env)
 
 		copy_prebuilt_binaries(gns_root +"/build/src/", "GameNetworkingSockets")
