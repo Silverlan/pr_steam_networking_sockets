@@ -30,7 +30,11 @@ else:
 	staging_dir = get_library_root_dir("GameNetworkingSockets")
 	mkpath(staging_dir)
 	os.chdir(staging_dir)
-	install_prebuilt_binaries("https://github.com/Silverlan/GameNetworkingSockets_prebuilt/releases/download/" +version +"/", version = version)
+	install_prebuilt_binaries(
+		"https://github.com/Silverlan/GameNetworkingSockets_prebuilt/releases/download/" +version +"/",
+		version = version,
+		toolset = "msvc" if (sys.platform == "win32") else "clang"
+	)
 
 cmake_args.append("-DDEPENDENCY_VALVE_GAMENETWORKINGSOCKETS_INCLUDE=" +get_library_include_dir("GameNetworkingSockets"))
 if platform == "win32":
