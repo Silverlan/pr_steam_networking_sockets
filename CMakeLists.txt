@@ -4,6 +4,20 @@ option(CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS "If enabled, steam networking sock
 
 set(PROJ_NAME_PREFIX pr_game_networking)
 set(CONFIG_USE_STEAMWORKS_NETWORKING OFF)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/modules")
+
+if(CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS MATCHES ON)
+	find_package(steamworks REQUIRED)
+endif()
+
+pr_fetch_prebuilt_binaries(
+    "${PRAGMA_DEPS_DIR}/GameNetworkingSockets"
+    "https://github.com/Silverlan/GameNetworkingSockets_prebuilt/releases/download"
+    "517fff"
+)
+find_package(valve_gamenetworkingsockets REQUIRED)
+
 add_subdirectory(shared)
 add_subdirectory(client)
 add_subdirectory(server)
