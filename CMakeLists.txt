@@ -39,5 +39,5 @@ if(${CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS})
     list(APPEND TARGET_LIST pr_steam_networking_client pr_steam_networking_server)
 endif()
 
-set_property(GLOBAL PROPERTY PRAGMA_MODULE_SKIP_TARGET_PROPERTY_FOLDER 1)
-set_property(GLOBAL APPEND PROPERTY PRAGMA_MODULE_TARGETS ${TARGET_LIST})
+set_property(GLOBAL PROPERTY PRAGMA_MODULE_pr_steam_networking_sockets_SKIP_TARGET_PROPERTY_FOLDER 1)
+set_property(GLOBAL APPEND PROPERTY PRAGMA_MODULE_pr_steam_networking_sockets_TARGETS ${TARGET_LIST})
