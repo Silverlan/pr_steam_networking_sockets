@@ -43,7 +43,7 @@ else()
   find_file(
     ${PCK}_RUNTIME
     NAMES GameNetworkingSockets.dll
-    HINTS ${PRAGMA_DEPS_DIR}/icu/bin
+    HINTS ${PRAGMA_DEPS_DIR}/GameNetworkingSockets/bin
   )
   set(REQ_VARS ${REQ_VARS} ${PCK}_ABSEIL_RUNTIME ${PCK}_LIBCRYPTO_RUNTIME ${PCK}_LIBPROTOBUF_RUNTIME ${PCK}_RUNTIME)
 endif()
