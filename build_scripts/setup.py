@@ -3,6 +3,7 @@ import subprocess
 import sys
 import stat
 import argparse
+import config
 from sys import platform
 from pathlib import Path
 
@@ -24,4 +25,4 @@ if build_gns:
 	GameNetworkingSockets.main()
 else:
 	print_msg("Downloading prebuilt GameNetworkingSockets binaries...")
-	subprocess.run(["cmake", "-DCMAKE_SOURCE_DIR=" +config.pragma_root, "-DPRAGMA_DEPS_DIR=" +config.prebuilt_bin_dir, "-P", "cmake/fetch_prebuilt_binaries.cmake"],check=True)
+	run_cmake_script(str(Path(moduleDir) / "cmake/fetch_prebuilt_binaries.cmake"))
