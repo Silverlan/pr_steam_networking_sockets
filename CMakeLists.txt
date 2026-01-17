@@ -11,17 +11,7 @@ if(CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS MATCHES ON)
 	find_package(steamworks REQUIRED)
 endif()
 
-if(UNIX)
-    set(gns_toolset ${toolset})
-else()
-    set(gns_toolset "msvc")
-endif()
-pr_fetch_prebuilt_binaries(
-    "${PRAGMA_DEPS_DIR}/GameNetworkingSockets"
-    "https://github.com/Silverlan/GameNetworkingSockets_prebuilt/releases/download"
-    "517fff"
-    ${gns_toolset}
-)
+include("cmake/fetch_prebuilt_binaries.cmake")
 find_package(valve_gamenetworkingsockets REQUIRED)
 
 add_subdirectory(shared)
