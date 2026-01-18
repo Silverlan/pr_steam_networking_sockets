@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 4.2.0)
 
 option(CONFIG_ENABLE_STEAM_NETWORKING_SOCKETS "If enabled, steam networking socket modules will be enabled. Requires steamworks." OFF)
 
