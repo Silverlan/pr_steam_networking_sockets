@@ -23,6 +23,6 @@ if build_gns:
 
 	from third_party import GameNetworkingSockets
 	GameNetworkingSockets.main()
-else:
+elif not config.no_build_networking:
 	print_msg("Downloading prebuilt GameNetworkingSockets binaries...")
 	run_cmake_script(str(Path(moduleDir) / "cmake/fetch_prebuilt_binaries.cmake"))

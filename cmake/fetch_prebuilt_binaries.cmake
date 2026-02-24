@@ -8,4 +8,6 @@ if(WIN32)
     set(sns_toolset "msvc")
 endif()
 
-pr_fetch_prebuilt_binaries("${PRAGMA_DEPS_DIR}/GameNetworkingSockets" "${base_url}" "${version}" TOOLSET ${sns_toolset})
+if(NOT config.no_build_networking)
+    pr_fetch_prebuilt_binaries("${PRAGMA_DEPS_DIR}/GameNetworkingSockets" "${base_url}" "${version}" TOOLSET ${sns_toolset})
+endif()
