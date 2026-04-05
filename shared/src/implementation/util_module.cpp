@@ -17,7 +17,7 @@ static int32_t get_net_lib_instance_count()
 	auto cvInstanceCount = pragma::Engine::Get()->RegisterConVar(cvarNameInstances, udm::Type::Boolean, "0", pragma::console::ConVarFlags::Hidden, "");
 	if(cvInstanceCount == nullptr)
 		return -1;
-	return pragma::Engine::Get()->GetConVarInt(cvarNameInstances);
+	return pragma::Engine::Get()->GetConVarValueOr<udm::Int32>(cvarNameInstances);
 }
 
 bool initialize_steam_game_networking_sockets(std::string &err)
