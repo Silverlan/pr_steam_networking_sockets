@@ -114,14 +114,14 @@ bool pragma::networking::SteamClient::PollMessages(pragma::networking::Error &ou
 {
 	if(!m_hConnection)
 		return true; // Nothing to poll
-	std::array<ISteamNetworkingMessage *, 256> incommingMessages;
-	auto numMsgs = GetSteamInterface().ReceiveMessagesOnConnection(m_hConnection, incommingMessages.data(), incommingMessages.size());
+	std::array<ISteamNetworkingMessage *, 256> incomingMessages;
+	auto numMsgs = GetSteamInterface().ReceiveMessagesOnConnection(m_hConnection, incomingMessages.data(), incomingMessages.size());
 	if(numMsgs < 0) {
 		outErr = {pragma::networking::ErrorCode::GenericError, "Invalid connection!"};
 		return false;
 	}
 	for(auto i = decltype(numMsgs) {0u}; i < numMsgs; ++i) {
-		auto *pIncomingMsg = incommingMessages.at(i);
+		auto *pIncomingMsg = incomingMessages.at(i);
 		auto packet = ReceiveDataFragment(*this, *pIncomingMsg);
 		if(packet.has_value())
 			HandlePacket(*packet);
