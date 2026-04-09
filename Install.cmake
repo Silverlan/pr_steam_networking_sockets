@@ -1,6 +1,7 @@
 set(INSTALL_PATH "modules/networking/game_networking")
 pr_install_create_directory("${INSTALL_PATH}")
 pr_install_targets(pr_game_networking_client pr_game_networking_server INSTALL_DIR "${INSTALL_PATH}")
+find_package(valve_gamenetworkingsockets REQUIRED)
 if(WIN32)
     pr_install_files(
         ${valve_gamenetworkingsockets_RUNTIMES}
