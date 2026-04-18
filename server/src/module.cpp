@@ -134,7 +134,7 @@ bool pragma::networking::SteamServer::DoStart(Error &outErr, uint16_t port, bool
 		  });
 		m_hListenSock = GetSteamInterface().CreateListenSocketIP(serverLocalAddr, 1, &opt);
 		if(m_hListenSock == k_HSteamListenSocket_Invalid) {
-			outErr = {pragma::networking::ErrorCode::UnableToListenOnPort, "Failed to listen on port " + std::to_string(serverLocalAddr.m_port) + "!"};
+			outErr = {pragma::networking::ErrorCode::UnableToListenOnPort, "Failed to listen on port " + util::to_string(serverLocalAddr.m_port) + "!"};
 			return false;
 		}
 	}

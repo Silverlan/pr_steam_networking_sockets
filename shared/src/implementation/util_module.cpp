@@ -43,11 +43,11 @@ bool initialize_steam_game_networking_sockets(std::string &err)
 		}
 		if(success == false) {
 			err = "Unable to initialize game networking sockets: " + errMsg;
-			pragma::Engine::Get()->SetConVar(cvarNameInstances, std::to_string(-1));
+			pragma::Engine::Get()->SetConVar(cvarNameInstances, pragma::util::to_string(-1));
 			return false;
 		}
 	}
-	pragma::Engine::Get()->SetConVar(cvarNameInstances, std::to_string(numInstances + 1));
+	pragma::Engine::Get()->SetConVar(cvarNameInstances, pragma::util::to_string(numInstances + 1));
 	return true;
 }
 void kill_steam_game_networking_sockets()
@@ -64,5 +64,5 @@ void kill_steam_game_networking_sockets()
 		GameNetworkingSockets_Kill();
 #endif
 	}
-	pragma::Engine::Get()->SetConVar(cvarNameInstances, std::to_string(numInstances - 1));
+	pragma::Engine::Get()->SetConVar(cvarNameInstances, pragma::util::to_string(numInstances - 1));
 }

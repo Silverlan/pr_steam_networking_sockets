@@ -59,7 +59,7 @@ std::string pragma::networking::SteamClient::GetIdentifier() const
 bool pragma::networking::SteamClient::Connect(const std::string &ip, pragma::networking::Port port, pragma::networking::Error &outErr)
 {
 	SteamNetworkingIPAddr ipAddr {};
-	if(ipAddr.ParseString((ip + ':' + std::to_string(port)).c_str()) == false)
+	if(ipAddr.ParseString((ip + ':' + util::to_string(port)).c_str()) == false)
 		return false;
 	SteamNetworkingConfigValue_t opt;
 	opt.SetPtr(
