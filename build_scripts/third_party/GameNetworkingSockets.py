@@ -20,7 +20,7 @@ def main():
 	
 	# Download
 	os.chdir(deps_dir)
-	commit_sha = "505c697d0abef5da2ff3be35aa4ea3687597c3e9" # v1.4.1
+	commit_sha = "517fff0cf6866ba163f4f016b0ef28f365c06c05"
 	gns_root = os.getcwd() +"/GameNetworkingSockets"
 	if not check_repository_commit(gns_root, commit_sha, "GameNetworkingSockets"): 
 		if not Path(gns_root).is_dir():
@@ -58,10 +58,15 @@ def main():
 			no_sudo = config.no_sudo
 			print_msg("Installing required GameNetworkingSockets packages...")
 			if(not no_sudo):
-				commands = [
-					"apt install libssl-dev",
-					"apt install libprotobuf-dev protobuf-compiler"
-				]
+				if(prefer_dnf()):
+					commands = []
+				elif(prefer_pacman()):
+					commands = []
+				else:
+					commands = [
+						"apt install libssl-dev",
+						"apt install libprotobuf-dev protobuf-compiler"
+					]
 				install_system_packages(commands, no_confirm)
 
 			print_msg("Building GameNetworkingSockets...")
